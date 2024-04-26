@@ -5,6 +5,10 @@ if [ "$#" -eq 0 ]; then
 	level=$(echo "$content"  | head -1| awk '{print $3}')
 	echo "$pass" | xclip -selection clipboard
 	ssh -p 2220 $level
-else
+elif [ "$#" -eq 2 ]; then
 	echo "level = bandit$1@bandit.labs.overthewire.org\npass = $2" > /home/Niko/projects/bash/otw/.data
+	git add .
+else
+	git commit -m "updated level and pass"
+	git push
 fi
